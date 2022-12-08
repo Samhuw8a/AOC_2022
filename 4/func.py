@@ -9,39 +9,39 @@ inf = float('inf')
 flatten = chain.from_iterable
 
 
-def mapl(f, iterable):
+def mapl(f, iterable)->list:
     return list(map(f, iterable))
 
-def mapt(f, iterable):
+def mapt(f, iterable)->tuple:
     return tuple(map(f, iterable))
 
-def filterl(f, iterable):
+def filterl(f, iterable)->list:
     return list(filter(f, iterable))
 
 
-def parse_multiline_string(s, datatype=str, sep='\n'):
+def parse_multiline_string(s, datatype=str, sep='\n')->list:
     return mapl(datatype, s.split(sep))
 
-def read_input(filename, datatype=str, sep='\n'):
+def read_input(filename, datatype=str, sep='\n')->list:
     filename = f"{filename:02d}" if isinstance(filename, int) else filename
-    with open(f"inputs/{filename}.txt") as f:
+    with open(f"{filename}.txt") as f:
         return parse_multiline_string(f.read(), datatype, sep)
 
 def read_input_line(filename, sep=''):
     filename = f"{filename:02d}" if isinstance(filename, int) else filename
-    with open(f"inputs/{filename}.txt") as f:
+    with open(f"{filename}.txt") as f:
         contents = f.read().strip()
         return contents if not sep else contents.split(sep)
 
 
-def digits(line):
+def digits(line)->list:
     return mapl(int, line)
 
-def integers(text, negative=True):
+def integers(text, negative=True)->tuple:
     return mapt(int, re.findall(r"-?\d+" if negative else r"\d+", text))
 
 
-def count_if(iterable, pred=bool):
+def count_if(iterable, pred=bool)->int:
     return sum(1 for item in iterable if pred(item))
 
 def first(iterable, default=None):
@@ -51,17 +51,17 @@ def filter_first(iterable, pred):
     return first(el for el in iterable if pred(el))
 
 
-def manhattan(a, b=(0, 0)):
+def manhattan(a, b=(0, 0))->int:
     return sum(abs(p - q) for p, q in zip(a, b))
 
 
-def sign(n):
+def sign(n)->int:
     if n > 0: return 1
     elif n < 0: return -1
     else: return 0
 
 
-def print_2d(lines):
+def print_2d(lines)->None:
     for line in lines:
         print(cat(line))
 
@@ -74,7 +74,7 @@ def transpose(matrix):
     return list(zip(*matrix))
 
 
-def bin2int(s):
+def bin2int(s)->int:
     return int(s, 2)
 
 
