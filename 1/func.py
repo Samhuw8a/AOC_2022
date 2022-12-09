@@ -1,5 +1,6 @@
 import re
 from itertools import chain, product
+from typing import Iterable
 
 
 # Most of this is shamelessly stolen from Peter Norvig.
@@ -78,7 +79,7 @@ def bin2int(s)->int:
     return int(s, 2)
 
 
-def neighbours(x, y, amount=4):
+def neighbours(x, y, amount=4)->Iterable[tuple]:
     assert amount in {4, 8, 9}
     for dy, dx in product((-1, 0, 1), repeat=2):
         if ((amount == 4 and abs(dx) != abs(dy)) or
